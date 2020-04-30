@@ -1,119 +1,124 @@
 # custom instruction set
 utility:
-  - end:
+  - name: end
     description: Terminates the machine
     example:
-  - out:
+  - name: out
     description: Writes a integer to an I/O port
     example:
       - integer register
       - port register
+
 mov:
-  - mov:
+  - name: mov
     id: movCR
     description: Moves a constant into a register
     example:
       - mov 5 %r1
-  - mov:
+  - name: mov
     id: movCA
     description: Moves a constant into a address
     example:
       - mov 5 $r1
-  - mov:
+  - name: mov
     id: movRR
     description: Copies a register into another register
     example:
       - mov %r1 %r2
-  - mov:
+  - name: mov
     id: movAR
     description: Moves a address into a register
     example:
       - mov $r1 %r2
-  - mov:
+  - name: mov
     id: movRA
     description: Moves a register into a address
     example:
       - mov %r1 $r2
-  - mov:
+  - name: mov
     id: movAA
     description: Moves a address into a address
     example:
       - mov $r1 $r2
-  - movb:
+  - name: movb
     id: movR8
     description: Moves a address into a register (8 bit)
     example:
       - movb $r1 %r2
-  - movb:
+  - name: movb
     id: movA8
     description: Moves a address into a address
     example:
       - movb $r1 $r2
-arithmatic:
-  - inc:
+
+arithmetic:
+  - name: inc
     description: Increments a register
     example:
       - inc register
-  - dec:
+  - name: dec
     description: Decrements a register
     example:
       - dec register
-  - add:
+  - name: add
     description: Adds r1 and r2
     example:
       - add %r1 r2
-  - sub:
+  - name: sub
     description: Subtracts r2 from r1
     example:
       - sub %r1 %r2
-  - mul:
+  - name: mul
     description: Multiplies r1 and r2
     example:
       - mul %r1 %r2
-  - div:
+  - name: div
     description: Divides r1 by r2
     example:
       - div %r1 %r2
-  - mod:
+  - name: mod
     description: Modulo of r1 and r2
     example:
       - mod %r1 %r2
+
 bitwise:
-  - not:
+  - name: not
     description: ~r1
     example:
       - not %r1
-  - and:
+  - name: and
     description: r1 & r2
     example:
       - and %r1 %r2
-  - or:
+  - name: or
     description: r1 | r2
     example:
       - or %r1 %r2
-  - xor:
+  - name: xor
     description: r1 ^ r2
     example:
       - xor %r1 %r2
-  - lsh:
+  - name: lsh
     description: r1 << r2
     example:
       - lsh %r1 %r2
-  - rsh:
+  - name: rsh
     description: r1 >> r2
     example:
       - rsh %r1 %r2
+
 conditional operators:
-  - less:
+  - name: less
     description: Tests whether r1 is less than r2
     example:
       - less %r1 %r2
-  - more:
+  - name: more
     description: Tests whether r1 is greater than r2
     example:
       - more %r1 %r2
+
 control:
-  - if:
+  - name: if
     id: ifi
     description: If r1 is 0, jump to r2, otherwise, continue
     example:
