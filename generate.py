@@ -25,9 +25,12 @@ ROW_TEMPLATE = '''
 
 EXAMPLE_TEMPLATE = '''<br>    {example}'''
 
-CODE_TEMPLATE = '''
+CODE_TEMPLATE = '''            <hr>
+            <details>
+                <summary>code</summary>
                 <pre class="textblock">{defines}</pre>
-                <pre class="textblock">{instructions}</pre>'''
+                <pre class="textblock">{instructions}</pre>
+            </details>'''
 
 def formatter(data, text):
     for key, value in data.items():
@@ -93,6 +96,7 @@ def generate_code(data):
 if __name__ == '__main__':
     CONFIG = 'instructions.yml'
     TEMPLATE = 'template.html'
+    SHOW_CODE = False
     
     # read config
     
@@ -115,7 +119,7 @@ if __name__ == '__main__':
     
     output = formatter({
         'tables' : generate_tables(data),
-        'code' : generate_code(data)
+        'code' : generate_code(data) if SHOW_CODE else '            <!-- run generate.py with the SHOW_CODE flag set to True to generate the code too -->'
     }, template)
     
     # save it
