@@ -8,7 +8,7 @@ TABLE_TEMPLATE = '''
                 <table class="salltable">
                     <tr>
                         <th width="12%">Opcode</th>
-                        <th width="5%">Value</th>
+                        <th width="12%">Value</th>
                         <th>Description</th>  
                     </tr>{rows}
                 </table>
@@ -19,11 +19,11 @@ ROW_TEMPLATE = '''
                         <td><h2><a href="#instruction-{id}">{name}</a></h2></td>
                         <td class="value">{value}</td>
                         <td class="description">
-                            <pre>{description}<br>Example: {examples}</pre>
+                            <pre>{description}<br>Syntax: {syntaxes}</pre>
                         </td>
                     </tr>'''
 
-EXAMPLE_TEMPLATE = '''<br>    {example}'''
+SYNTAX_TEMPLATE = '''<br>    {syntax}'''
 
 CODE_TEMPLATE = '''            <hr>
             <details>
@@ -44,16 +44,16 @@ def generate_row(instruction):
         # take formatting directly from yaml
         **instruction,
         
-        # format multiple examples
-        'examples' : ''.join([
-            # repeat this for every example
+        # format multiple syntaxes
+        'syntaxes' : ''.join([
+            # repeat this for every syntax
             formatter({
-                'example' : example
-            }, EXAMPLE_TEMPLATE)
+                'syntax' : syntax
+            }, SYNTAX_TEMPLATE)
             
-            for example in (
-                # default to empty list if no examples
-                instruction.get('examples') or list()
+            for syntax in (
+                # default to empty list if no syntaxes
+                instruction.get('syntaxes') or list()
             )
         ])
     }, ROW_TEMPLATE)
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     i = 0
     for summary, details in data.items():
         for instruction in details:
-            instruction['value'] = '0x%02X' % i
+            instruction['value'] = format(i, '04b')
             instruction['id'] = instruction.get('id', instruction['name'])
             i += 1
     

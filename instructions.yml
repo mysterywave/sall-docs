@@ -2,124 +2,77 @@
 utility:
   - name: end
     description: Terminates the machine
-    example:
   - name: out
-    description: Writes a integer to an I/O port
-    example:
-      - integer register
-      - port register
-
-mov:
+    description: Writes a byte to an I/O port
+    inputs:
+      - byte
+      - port
+    syntax:
+      - out byte port
   - name: mov
     id: movCR
     description: Moves a constant into a register
-    example:
-      - mov 5 %r1
-  - name: mov
-    id: movCA
-    description: Moves a constant into a address
-    example:
-      - mov 5 $r1
-  - name: mov
-    id: movRR
-    description: Copies a register into another register
-    example:
-      - mov %r1 %r2
-  - name: mov
-    id: movAR
-    description: Moves a address into a register
-    example:
-      - mov $r1 %r2
-  - name: mov
-    id: movRA
-    description: Moves a register into a address
-    example:
-      - mov %r1 $r2
-  - name: mov
-    id: movAA
-    description: Moves a address into a address
-    example:
-      - mov $r1 $r2
-  - name: movb
-    id: movR8
-    description: Moves a address into a register (8 bit)
-    example:
-      - movb $r1 %r2
-  - name: movb
-    id: movA8
-    description: Moves a address into a address
-    example:
-      - movb $r1 $r2
+    inputs:
+      - value
+      - destination
+    syntax:
+      - mov value destination
 
 arithmetic:
-  - name: inc
-    description: Increments a register
-    example:
-      - inc register
-  - name: dec
-    description: Decrements a register
-    example:
-      - dec register
   - name: add
     description: Adds r1 and r2
-    example:
+    syntax:
       - add %r1 r2
   - name: sub
     description: Subtracts r2 from r1
-    example:
+    syntax:
       - sub %r1 %r2
   - name: mul
     description: Multiplies r1 and r2
-    example:
+    syntax:
       - mul %r1 %r2
   - name: div
     description: Divides r1 by r2
-    example:
+    syntax:
       - div %r1 %r2
   - name: mod
     description: Modulo of r1 and r2
-    example:
+    syntax:
       - mod %r1 %r2
 
 bitwise:
-  - name: not
-    description: ~r1
-    example:
-      - not %r1
   - name: and
     description: r1 & r2
-    example:
+    syntax:
       - and %r1 %r2
   - name: or
     description: r1 | r2
-    example:
+    syntax:
       - or %r1 %r2
   - name: xor
     description: r1 ^ r2
-    example:
+    syntax:
       - xor %r1 %r2
   - name: lsh
     description: r1 << r2
-    example:
+    syntax:
       - lsh %r1 %r2
   - name: rsh
     description: r1 >> r2
-    example:
+    syntax:
       - rsh %r1 %r2
 
-conditional operators:
+conditional:
   - name: less
     description: Tests whether r1 is less than r2
-    example:
+    syntax:
       - less %r1 %r2
   - name: more
     description: Tests whether r1 is greater than r2
-    example:
+    syntax:
       - more %r1 %r2
-
-control:
   - name: if
     id: ifi
     description: If r1 is 0, jump to r2, otherwise, continue
-    example:
+    syntax:
       - if %r1 %r2
